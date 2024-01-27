@@ -1,10 +1,10 @@
 import './App.css';
-import { User_dados } from './componentes/listar_user';
+import { Person } from './routes/get_person';
 
 function App() {
   return (
     <div className="App">
-      <User_dados />
+      <Person />
     </div>
   );
 }
