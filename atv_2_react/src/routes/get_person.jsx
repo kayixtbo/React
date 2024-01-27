@@ -3,22 +3,14 @@ import { useState } from 'react'
 
 export function Person(){
     const [id,setId] = useState(0)
+    const [person,setPerson] = useState()
 
     let path = `https://rickandmortyapi.com/api/character/${id}`
 
-    personagem = axios.get(path)
-
-    name_person = personagem.name
-    status_person = personagem.status
-    specie_person = personagem.species
-    type_person = personagem.type
-    gender_person = personagem.gender
-    
-    const [name,setName] = useState(name_person)
-    const [status, setStatus] = useState(status_person)
-    const [specie,setSpecie] = useState(specie_person)
-    const [type,setType] = useState(type_person)
-    const [gender,setGender] = useState(gender_person)
+    axios.get(path).then((response) => {
+    const personagem = response;
+    setPerson(personagem);
+  });
 
     const change_id_more = ()=>{
         if(id>826){
@@ -40,21 +32,27 @@ export function Person(){
 
     return (
         <div>
-            <h1>{name_person}</h1>
-            <div>
-                <p>Status: {name}</p>
-                <p>Specie: {specie}</p>
-                <p>Tipo: {type}</p>
-                <p>Genero: {gender}</p>
-            </div>
-            <div>
-                <button onClick={change_id_less}>
-                    anterior
-                </button>
-                <button onClick={change_id_more}>
-                    próximo
-                </button>
-            </div>
+            <header>
+                <h1>{person.name}</h1>
+            </header>
+            <main>
+                <div>
+                    <p>Status: {person.name}</p>
+                    <p>Specie: {person.specie}</p>
+                    <p>Tipo: {person.type}</p>
+                    <p>Genero: {person.gender}</p>
+                </div>
+                <div>
+                    <button onClick={change_id_less}>
+                        anterior
+                    </button>
+                </div>
+                <div>
+                    <button onClick={change_id_more}>
+                        próximo
+                    </button>
+                </div>
+            </main>       
         </div>
     )
 }
